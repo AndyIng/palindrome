@@ -1,3 +1,6 @@
+module.exports = Phrase;
+
+
 // reverse a string
 
 function reverse(string) {
@@ -16,11 +19,22 @@ function Phrase(content) {
         return string.toLowerCase();
     }
     this.processedContent = function processedContent() {
-        return this.content.toLowerCase();
+        return this.letters().toLowerCase();
     }
     this.louder = function() {
         return this.content.toUpperCase();
     }
+    this.letters = function letters() {
+        let theLetters = [];
+        const letterRegex = /[a-z]/i;
+        Array.from(this.content).forEach(function(character){
+             if (character.match(letterRegex)) {
+                theLetters.push(character);
+            }
+        });
+        return theLetters.join(""); 
+    }
+    
     this.palindrome = function palindrome() {
     return this.processedContent() === this.processedContent().reverse();
 };
